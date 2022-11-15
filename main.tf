@@ -51,7 +51,7 @@ resource "azurerm_lb_probe" "nginx-scaleset-pp" {
 # resource_group_name = azurerm_resource_group.nginx-scaleset-pp.name
  loadbalancer_id     = azurerm_lb.nginx-scaleset-pp.id
  name                = "http-running-probe"
- port                = var.application_port
+ port                = var.fe_application_port
  protocol            = "Http"
  request_path        ="/"
 }
@@ -83,10 +83,10 @@ resource "azurerm_linux_virtual_machine_scale_set" "nginx-scaleset-pp" {
  custom_data         = base64encode(data.template_file.run_scripts.rendered)
  depends_on          = [azurerm_lb_probe.nginx-scaleset-pp]
  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
+    publisher = var.publisher
+    offer     = var.offer
+    sku       = var.sku
+    version   = var.ver
   }
 
  os_disk {
@@ -124,8 +124,8 @@ resource "azurerm_lb_rule" "lbnatrule" {
    loadbalancer_id                = azurerm_lb.nginx-scaleset-pp.id
    name                           = "http"
    protocol                       = "Tcp"
-   frontend_port                  = var.application_port
-   backend_port                   = var.application_port
+   frontend_port                  = var.fe_application_port
+   backend_port                   = var.be_application_port
    backend_address_pool_ids        = [azurerm_lb_backend_address_pool.backend-addr-pool.id]
    frontend_ip_configuration_name = "PrivateIPAddress"
    probe_id                       = azurerm_lb_probe.nginx-scaleset-pp.id
