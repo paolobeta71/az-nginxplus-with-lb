@@ -32,3 +32,6 @@ Please note you need to customize the following variables in the variables.tf fi
 - variable "remote_vnet_name" : the name of the vnet where the upstream servers are installed
 
 In order to select your best publisher/offer/sku/ver combination please refer to the supported Linux Distribution by nginx-plus consulting the following link: https://docs.nginx.com/nginx/technical-specs/
+
+Last but not least, this setup enable using njs access logs for all requests and responses logging headers and body responses.
+
