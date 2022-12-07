@@ -17,8 +17,8 @@ Please note you need to customize the following variables in the variables.tf fi
 - variable "offer" : offer you selected for the linux image you want to use
 - variable "sku" : sku you selected for the linux image you want to use
 - variable "ver" : version you selected for the linux image you want to use
-- variable "nginx_certificate_url" : upload the nginx certificate in a private and secure repository and put here the url to use to wget the file
-- variable "nginx_key_url" : upload the nginx key in a private and secure repository and put here the url to use to wget the file
+- variable "nginx_certificate_url" : upload the nginx certificate in a private and secure repository, put here the url to use to wget the file
+- variable "nginx_key_url" : upload the nginx key in a private and secure repository, put here the url to use to wget the file
 - variable "scaleset_subnet" : the CIDR subnet value you want to use for the scaleset
 - variable "scaleset_subnet_name" : the subnet name to use in the scaleset
 - variable "LB_StaticIP" : the internal static IP to use for the load balancer 
